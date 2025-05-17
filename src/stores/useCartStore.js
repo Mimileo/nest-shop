@@ -1,0 +1,61 @@
+import { create } from "zustand";
+
+const loadCart = () => {
+  try {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+  } catch (error) {
+    console.error('Error loading cart:', error);
+    return [];
+  }
+}
+
+const savedCart = (cart) => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+export const useCartStore =  create((set, get) => ({
+    cart: loadCart(),
+    total: 0,
+    isCartOpen: false, 
+
+    addToCart: (product) => {
+        const cart = [...get().cart];
+        const existingProduct = cart.find(item => item.id === product.id);
+
+        if (existingProduct) {
+           existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+        } else {
+            cart.push({...product, quantity: 1});
+        }
+        savedCart(cart);
+        set({cart});
+        get().calculateTotal();
+    },
+
+    removeFromCart: (productId) => {
+        // Remove the product with the specified ID
+        const updatedCart = get().cart.filter(item => item.id !== productId);
+        savedCart(updatedCart);
+        set({cart: updatedCart});
+        get().calculateTotal();
+    },
+
+    clearCart: () => {
+        savedCart([]);
+        set({cart: [], total: 0});
+    },
+
+
+    calculateTotal: () => {
+        const cart = get().cart;
+
+        // calculate total of each product and quantity and add to running total
+        const total = cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
+        set({total});
+    },
+
+    toggleCart: () => set(state => ({ isCartOpen: !state.isCartOpen })),
+
+}));
