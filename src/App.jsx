@@ -1,16 +1,22 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import ProductCard from './components/ProductCard'
 import { useProductStore } from './stores/useProductStore'
 import Navbar from "./components/Navbar";
+import ProductPage from './pages/ProductPage';
+import HomePage from './pages/HomePage';
 
 function App() {
-   const { products, fetchProducts, loading } = useProductStore();
+   const {  fetchProducts, loading } = useProductStore();
 
    useEffect(() => {
 		fetchProducts();
 	}, [fetchProducts]);
 
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
  
   return (
@@ -29,26 +35,17 @@ function App() {
         { /* Navigation bar area*/ }
          <Navbar />
 
-        {/* Content - products*/}
-          <div className="card text-emerald-600 font-bold">
+         <Routes>
 
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
-              <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4'>
-                {products.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                  />
-                ))}
-              </ul>
-            )}
+            <Route path='/' element={<HomePage />} />
           
-          
-          </div>
-        </div>
+            <Route 
+              path="/products/:id" 
+              element={<ProductPage />}
+             />
+         </Routes>
 
+      </div>
     </div>
   )
 }

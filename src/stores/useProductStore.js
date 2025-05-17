@@ -5,6 +5,7 @@ import { create } from "zustand";
 
 export const useProductStore =  create((set, get) => ({
     products: [],
+    categories: [],
 	loading: false,
 
 
@@ -23,6 +24,16 @@ export const useProductStore =  create((set, get) => ({
         }
     },
 
+    fetchProduct: async (id) => {
+        try {
+            const response = await axiosInstance.get(`products/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching product:', error);
+            throw error;
+        }
+    },
+
     fetchProducts: async () => {
         set({loading: true});
        
@@ -34,8 +45,27 @@ export const useProductStore =  create((set, get) => ({
             console.error('Error fetching products:', error);
             set({ error: "Failed to fetch products", loading: false });
           
-    }
+        }
+    },
 
+    fetchProductCategories: async () => {
+        try {
+            const response = await axiosInstance.get('/products');
+            console.log(response.data);
 
-    }
+            const productCategories = response.data.map(
+                (product) => product.category
+            ); 
+
+            const productCategorySet = new Set(productCategories);
+
+            // spread the unique categories into an array
+            const uniqueCategories = [...productCategorySet];
+            
+            set({ categories: uniqueCategories });
+        } catch (error) {
+            console.error('Error fetching product categories:', error);
+            throw error;
+        }
+    },
 }));
