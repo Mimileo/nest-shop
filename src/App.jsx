@@ -4,7 +4,9 @@ import ProductCard from './components/ProductCard'
 import Navbar from "./components/Navbar";
 import ProductPage from './pages/ProductPage';
 import HomePage from './pages/HomePage';
-import { Home } from 'lucide-react';
+import ContactPage from './pages/ContactPage';
+import  ShopPage  from './pages/ShopPage';
+import  AboutPage  from './pages/AboutPage';
 
 function App() {
 
@@ -27,15 +29,27 @@ function App() {
 
          <Routes>
 
-            <Route path='/' element={<HomePage />} />
+            <Route 
+              path='/' 
+              element={<HomePage />} 
+            />
             <Route 
               path="/products" 
-              element={<HomePage />}
+              element={<ShopPage />}
              />
           
             <Route 
               path="/products/:id" 
               element={<ProductPage />}
+             />
+
+              <Route 
+              path="/about" 
+              element={<AboutPage />}
+             />
+              <Route 
+              path="/contact" 
+              element={<ContactPage />}
              />
          </Routes>
 
