@@ -3,8 +3,7 @@ import { useProductStore } from "../stores/useProductStore";
 import ProductCard from "../components/ProductCard";
 import CategoryPicker from "../components/CategoryPicker";
 import SortPicker from "../components/SortPicker";
-import ProductGrid from "../components/ProductGrid";
-
+import Loader from "../components/Loader";
 const HomePage = () => {
     const { products, fetchProducts, loading, categories, fetchProductCategories } = useProductStore();
     const [selectedCategory, setSelectedCategory] = useState("all");
@@ -62,11 +61,16 @@ const HomePage = () => {
                 />
             </div>
             {loading ? (
-                <p>Loading...</p>
+                <Loader />
             ) : (
-                <ProductGrid
-                    products={filteredProducts()} 
-                />
+                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+                    {filteredProducts().map((product) => (
+                       <ProductCard 
+                            key={product.id} 
+                            product={product} 
+                        />
+                    ))}
+                </ul>
             )}
         </div>
     );
