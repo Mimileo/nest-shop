@@ -38,6 +38,7 @@ const ProductPage = () => {
                     setCurrentProduct(product);
                 } else {
                     setErrorMessage('Product not found');
+                    console.error(errorMessage);
                 }
                 
                
@@ -50,9 +51,13 @@ const ProductPage = () => {
         };
 
         loadProduct();
-    }, [id, fetchProduct]);
+    }, [id, fetchProduct, errorMessage]);
 
 
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
 
     if (!currentProduct) {
         return <p>Product not found</p>;
