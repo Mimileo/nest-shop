@@ -24,13 +24,21 @@ export const useCartStore =  create((set, get) => ({
         const cart = [...get().cart];
         const existingProduct = cart.find(item => item.id === product.id);
 
+        let updatedCart;
         if (existingProduct) {
-           existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+           updatedCart = cart.map(item => {
+                if (item.id === product.id) {
+                    return {...item, quantity: item.quantity + 1};
+                } else {
+                    return item;
+                };
+            });
         } else {
-            cart.push({...product, quantity: 1});
+            updatedCart = [...cart, { ...product, quantity: 1 }];
         }
-        savedCart(cart);
-        set({cart});
+       
+        set({cart: updatedCart});
+        savedCart(updatedCart);
         get().calculateTotal();
     },
 
