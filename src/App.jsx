@@ -1,22 +1,12 @@
-import { useEffect } from 'react'
+
 import { Link, Route, Routes } from 'react-router-dom'
 import ProductCard from './components/ProductCard'
-import { useProductStore } from './stores/useProductStore'
 import Navbar from "./components/Navbar";
 import ProductPage from './pages/ProductPage';
 import HomePage from './pages/HomePage';
+import { Home } from 'lucide-react';
 
 function App() {
-   const {  fetchProducts, loading } = useProductStore();
-
-   useEffect(() => {
-		fetchProducts();
-	}, [fetchProducts]);
-
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
  
   return (
@@ -38,6 +28,10 @@ function App() {
          <Routes>
 
             <Route path='/' element={<HomePage />} />
+            <Route 
+              path="/products" 
+              element={<HomePage />}
+             />
           
             <Route 
               path="/products/:id" 

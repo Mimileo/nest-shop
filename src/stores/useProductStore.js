@@ -27,10 +27,15 @@ export const useProductStore =  create((set, get) => ({
     fetchProduct: async (id) => {
         try {
             const response = await axiosInstance.get(`products/${id}`);
+
+            console.log(response.data);
+            if (!response.data) {
+                return null;
+            }
             return response.data;
         } catch (error) {
             console.error('Error fetching product:', error);
-            throw error;
+            return null;
         }
     },
 
