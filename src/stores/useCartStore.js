@@ -56,6 +56,24 @@ export const useCartStore =  create((set, get) => ({
         set({total});
     },
 
+    updateQuantity: (productId, quantity) => {
+
+        if (quantity === 0) {
+            get().removeFromCart(productId);
+            return;
+        }
+
+        // Update the quantity of the product
+       const updatedCart = get().cart.map((item) =>
+          // if the product id matches, update the quantity otherwise return the same item
+            item.id === productId ? { ...item, quantity } : item
+        );
+
+        savedCart(updatedCart);
+        set({cart: updatedCart});
+        get().calculateTotal();
+    },
+
     toggleCart: () => set(state => ({ isCartOpen: !state.isCartOpen })),
 
 }));
