@@ -3,6 +3,7 @@ import { useProductStore } from "../stores/useProductStore";
 import { useEffect, useState } from "react";
 import { Product } from "../utils/types/Product";
 import ProductDetail from "../components/ProductDetails";
+import Loader from "../components/Loader";
 
 /**
  * @typedef {Object} Product
@@ -56,7 +57,7 @@ const ProductPage = () => {
 
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <Loader />;
     }
 
     if (!currentProduct) {

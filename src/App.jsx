@@ -1,6 +1,5 @@
 
-import { Link, Route, Routes } from 'react-router-dom'
-import ProductCard from './components/ProductCard'
+import { Link, Route, Routes } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import ProductPage from './pages/ProductPage';
 import HomePage from './pages/HomePage';
