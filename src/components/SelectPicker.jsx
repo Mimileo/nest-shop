@@ -1,9 +1,7 @@
 const SelectPicker = ({ label, value, options, onChange, name = "picker" }) => {
   return (
-    <div className="flex sm:flex-col sm:items-center justify-center gap-4 sm:gap-2 text-white font-bold mb-2 md:mb-0">
-      <label 
-        htmlFor={name} 
-        className="mb-1 sm:mb-0">
+    <div className="flex flex-col w-full max-w-xs text-white font-bold mb-2 mx-auto sm:mx-0">
+      <label htmlFor={name} className="mb-1 text-sm md:text-base">
         {label}
       </label>
 
@@ -12,9 +10,9 @@ const SelectPicker = ({ label, value, options, onChange, name = "picker" }) => {
         name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="p-1 text-sm md:p-2 md:text-base rounded border bg-white border-emerald-600 text-emerald-600 font-bold"
+        className="w-full px-3 py-2 rounded border bg-white border-emerald-600 text-emerald-600 font-bold"
       >
-        {options.map(choice => (
+        {options.map((choice) => (
           <option key={choice.value} value={choice.value}>
             {choice.label}
           </option>
