@@ -1,9 +1,14 @@
 const CategoryPicker = ({ selectedCategory, categories, onCategoryChange }) => {
     return (
-            <label className="flex flex-col text-white font-bold mb-2 md:mb-0 md:w-48">
-                Select Category
+            <div className="flex sm:flex-col sm:items-center justify-center gap-4 sm:gap-2 text-white font-bold mb-2 md:mb-0">
+
+                <label aria-label="Select Category" className="mb-1 sm:mb-0">
+                    Select Category
+                </label>
+                
                 <select 
-                    className="mt-1 p-2 rounded border bg-white border-emerald-600 text-emerald-600 font-bold"
+                    id="selectedCategory"
+                    className="p-1 text-sm md:p-2 md:text-base rounded border bg-white border-emerald-600 text-emerald-600 font-bold"
                     name="selectedCategory"
                     value={selectedCategory}
                     onChange={(e) => onCategoryChange(e.target.value)}
@@ -22,7 +27,7 @@ const CategoryPicker = ({ selectedCategory, categories, onCategoryChange }) => {
                     <option value="name-asc">Name: A to Z</option>
                     <option value="name-desc">Name: Z to A</option>
                 </select>                    
-            </label>
+            </div>
     )
 }
 

@@ -77,8 +77,8 @@ const Navbar = () => {
           {/* Cart Card - Popup */}
           {isCartOpen && (
             <div
-              className="absolute right-0 mt-2 w-96 bg-white rounded shadow-lg border border-gray-200 z-50
-                                transform transition duration-300 ease-out origin-top-right"
+              className="cart-popup fixed mt-2 right-0 bg-white rounded shadow-lg border border-gray-200 z-50
+           transform transition duration-300 ease-out w-72 sm:w-80 md:w-96 max-h-[80vh] overflow-auto"
               ref={cartRef}
             >
               <CartCard />

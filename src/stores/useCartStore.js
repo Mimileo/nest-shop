@@ -82,6 +82,13 @@ export const useCartStore =  create((set, get) => ({
         get().calculateTotal();
     },
 
+    buyCart: () => {
+        
+        alert("Thank you for your purchase!");
+        savedCart([]);
+        set({cart: [], total: 0});
+    },
+
     toggleCart: () => set(state => ({ isCartOpen: !state.isCartOpen })),
 
 }));

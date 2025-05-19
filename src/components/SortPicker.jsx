@@ -1,7 +1,7 @@
 
 const SortPicker = ({ sortOption, onSortChange }) => {
     return (
-        <label className="flex flex-col text-white font-bold mb-2 md:mb-0 md:w-48">
+        <div className="flex sm:flex-col sm:items-center justify-center gap-4 sm:gap-2 text-white font-bold mb-2 md:mb-0">
             Sort By
             <select 
                 className="mt-1 p-2 rounded border bg-white border-emerald-600 text-emerald-600 font-bold hover:"
@@ -15,7 +15,7 @@ const SortPicker = ({ sortOption, onSortChange }) => {
                 <option value="name-asc">Name: A to Z</option>
                 <option value="name-desc">Name: Z to A</option>
             </select>
-        </label>
+        </div>
     );
 };
 
