@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useProductStore } from "../stores/useProductStore";
-import ProductCard from "../components/ProductCard";
-import CategoryPicker from "../components/CategoryPicker";
-import SortPicker from "../components/SortPicker";
+import ProductCard from "../components/Product/ProductCard";
+import CategoryPicker from "../components/Pickers/CategoryPicker";
+import SortPicker from "../components/Pickers/SortPicker";
 import Loader from "../components/Loader";
 
-import SelectPicker from "../components/SelectPicker";
+import SelectPicker from "../components/Pickers/SelectPicker";
+import { Grid } from "lucide-react";
+import GridLayout from "../Layouts/GridLayout";
 const HomePage = () => {
   const {
     products,
@@ -87,14 +89,17 @@ const HomePage = () => {
           onChange={setSortOption}
         />
       </div>
-      {loading ? (
-        <Loader />
-      ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-          {filteredProducts().map((product) => (
+      {loading && <Loader />}
+
+      {!loading && (
+        <>
+        <GridLayout cols="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" gap="gap-4">
+              {filteredProducts().map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </ul>
+        </GridLayout>
+        </>
+      
       )}
     </div>
   );

@@ -2,10 +2,14 @@
 import { Link } from "react-router-dom";
 import { useCartStore } from "../stores/useCartStore";
 import { ShoppingCart } from "lucide-react";
-import CartCard from "./CartCard";
+import CartCard from "./Cart/CartCard";
 import { useRef, useCallback, useState } from "react";
 import useClickOutside from "../utils/hooks/useClickOutside";
+import { navLinks } from "../config/nav.config";
 import Logo from "./Logo";
+
+
+
 const Navbar = () => {
   const cart = useCartStore((state) => state.cart);
 
@@ -18,18 +22,24 @@ const Navbar = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!MobileMenuOpen);
 
   const cartRef = useRef(null);
+   const buttonRef = useRef(null);
 
+
+  const handleToggleCart = useCallback(() => {
+    toggleCart();
+  }, [toggleCart]);
+
+  // Explicitly close cart
   const closeCart = useCallback(() => {
-    if (isCartOpen) {
-      toggleCart();
-    }
+    if (isCartOpen) toggleCart(false); // force close
   }, [isCartOpen, toggleCart]);
 
-  useClickOutside(cartRef, closeCart, isCartOpen);
+
+  useClickOutside(cartRef, closeCart, isCartOpen, [buttonRef]);
 
   return (
     <header className="fixed top-0 w-full bg-white text-emerald-700 shadow-md z-50">
-      <div className="container mx-auto px-1 py-3 flex items-center justify-between">
+      <div className="px-4 py-3 flex items-center justify-between w-full">
         {/* Logo */}
         <div className="flex items-center gap-4">
           <Logo />
@@ -42,25 +52,24 @@ const Navbar = () => {
         {/* Navigation links */}
         <nav className="hidden md:flex items-center gap-6">
           <ul className="flex items-center gap-5">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/products">Products</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  className="text-lg font-semibold hover:text-emerald-800"
+                  to={link.to}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <div className="relative">
           <button
             type="button"
-            onClick={toggleCart}
+            ref={buttonRef}
+            onClick={handleToggleCart}
             className="relative flex items-center text-emerald-600 hover:text-emerald-800 focus:outline-none"
           >
             <ShoppingCart size={24} />
@@ -131,26 +140,17 @@ const Navbar = () => {
       {MobileMenuOpen && (
         <div className="md:hidden bg-white shadow-md p-4">
           <ul className="flex flex-col gap-2">
-            <li>
-              <Link to="/" onClick={toggleMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/products" onClick={toggleMobileMenu}>
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" onClick={toggleMobileMenu}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" onClick={toggleMobileMenu}>
-                Contact
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  className="text-emerald-600text-lg font-semibold hover:text-emerald-800"
+                  to={link.to}
+                  onClick={toggleMobileMenu}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}

@@ -1,5 +1,5 @@
 
-import { useCartStore } from "../stores/useCartStore";
+import { useCartStore } from "../../stores/useCartStore";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
