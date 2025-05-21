@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useProductStore } from "../stores/useProductStore";
 import { useEffect, useState } from "react";
 import { Product } from "../utils/types/Product";
-import ProductDetail from "../components/ProductDetails";
+import ProductDetail from "../components/Product/ProductDetails";
 import Loader from "../components/Loader";
 
 /**

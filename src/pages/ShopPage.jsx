@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useProductStore } from "../stores/useProductStore";
-import ProductCard from "../components/ProductCard";
-import CategoryPicker from "../components/CategoryPicker";
-import SortPicker from "../components/SortPicker";
+import ProductCard from "../components/Product/ProductCard";
+import CategoryPicker from "../components/Pickers/CategoryPicker";
+import SortPicker from "../components/Pickers/SortPicker";
 import Loader from "../components/Loader";
 const ShopPage = () => {
     const { products, fetchProducts, loading, categories, fetchProductCategories } = useProductStore();

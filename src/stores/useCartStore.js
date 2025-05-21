@@ -10,14 +10,22 @@ const loadCart = () => {
   }
 }
 
+
 const savedCart = (cart) => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+const calculateTotal = (cart) => {
+    return cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
+}
+
+
+const currentCart = loadCart();
+const currentTotal = calculateTotal(currentCart);
 
 export const useCartStore =  create((set, get) => ({
-    cart: loadCart(),
-    total: 0,
+    cart: currentCart,
+    total: currentTotal,
     isCartOpen: false, 
 
     addToCart: (product) => {
@@ -36,32 +44,24 @@ export const useCartStore =  create((set, get) => ({
         } else {
             updatedCart = [...cart, { ...product, quantity: 1 }];
         }
-       
-        set({cart: updatedCart});
+        const total = calculateTotal(updatedCart);
         savedCart(updatedCart);
-        get().calculateTotal();
+        set({cart: updatedCart, total: total});
+        
     },
 
     removeFromCart: (productId) => {
         // Remove the product with the specified ID
         const updatedCart = get().cart.filter(item => item.id !== productId);
+
+        const total = calculateTotal(updatedCart);
         savedCart(updatedCart);
-        set({cart: updatedCart});
-        get().calculateTotal();
+        set({cart: updatedCart, total: total});
     },
 
     clearCart: () => {
         savedCart([]);
         set({cart: [], total: 0});
-    },
-
-
-    calculateTotal: () => {
-        const cart = get().cart;
-
-        // calculate total of each product and quantity and add to running total
-        const total = cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
-        set({total});
     },
 
     updateQuantity: (productId, quantity) => {
@@ -77,18 +77,19 @@ export const useCartStore =  create((set, get) => ({
             item.id === productId ? { ...item, quantity } : item
         );
 
+        const total = calculateTotal(updatedCart);
         savedCart(updatedCart);
-        set({cart: updatedCart});
-        get().calculateTotal();
+        set({cart: updatedCart, total: total});
     },
 
     buyCart: () => {
         
         alert("Thank you for your purchase!");
-        savedCart([]);
         set({cart: [], total: 0});
     },
 
-    toggleCart: () => set(state => ({ isCartOpen: !state.isCartOpen })),
+    toggleCart: () => set(state => ({
+        isCartOpen: !state.isCartOpen
+    })),
 
 }));

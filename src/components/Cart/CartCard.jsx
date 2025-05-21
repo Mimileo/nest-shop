@@ -1,5 +1,4 @@
-import { Trash } from "lucide-react";
-import { useCartStore } from "../stores/useCartStore";
+import { useCartStore } from "../../stores/useCartStore";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
 const CartCard = () => {
@@ -30,7 +29,7 @@ const CartCard = () => {
 
   return (
     <>
-      <div className="cart-container bg-white p-5 rounded-2xl shadow-lg w-[50vw] max-w-sm max-h-[90vh] overflow-y">
+      <div className="cart-container bg-white p-5 rounded-2xl shadow-lg w-[90vw] sm:w-[50vw] max-w-sm max-h-[90vh]">
         <h2 className="cart-title text-2xl font-bold mb-4 text-emerald-700">
           Your Cart
         </h2>
@@ -38,7 +37,7 @@ const CartCard = () => {
         {cart.length !== 0 ? (
           <>
             {/* Cart Items */}
-            <div className="cart-items space-y-4">
+            <div className="cart-items space-y-4 max-h-[50vh] overflow-y-auto pr-2">
               {cart.map((item) => (
                 <CartItem key={item.id} item={item} />
               ))}
