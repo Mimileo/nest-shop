@@ -1,11 +1,11 @@
 
 import {Route, Routes } from 'react-router-dom';
-import ProductPage from './pages/ProductPage';
-import HomePage from './pages/HomePage';
-import ContactPage from './pages/ContactPage';
+import ProductPage from './pages/Products/ProductPage';
+import HomePage from './pages/Home/HomePage';
+import ContactPage from './pages/Contact/ContactPage';
 import  ShopPage  from './pages/ShopPage';
-import  AboutPage  from './pages/AboutPage';
-import MainLayout from './Layouts/MainLayout';
+import  AboutPage  from './pages/About/AboutPage';
+import MainLayout from './components/Layouts/MainLayout';
 
 
 
