@@ -30,7 +30,7 @@ const CartCard = () => {
   return (
     <>
       <div className="cart-container bg-white p-5 rounded-2xl shadow-lg w-[90vw] sm:w-[50vw] max-w-sm max-h-[90vh]">
-        <h2 className="cart-title text-2xl font-bold mb-4 text-emerald-700">
+        <h2 className="cart-title text-2xl font-bold mb-4 text-emerald-500">
           Your Cart
         </h2>
 

@@ -38,13 +38,13 @@ const Navbar = () => {
   useClickOutside(cartRef, closeCart, isCartOpen, [buttonRef]);
 
   return (
-    <header className="fixed top-0 w-full bg-white text-emerald-700 shadow-md z-50">
+    <header className="fixed top-0 w-full bg-white text-emerald-500 shadow-md z-50">
       <div className="px-4 py-3 flex items-center justify-between w-full">
         {/* Logo */}
         <div className="flex items-center gap-4">
           <Logo />
 
-          <Link to="/" className="text-2xl font-bold text-emerald-600">
+          <Link to="/" className="text-2xl font-bold font-script text-emerald-500">
             DigiatlNest Shop
           </Link>
         </div>
@@ -65,12 +65,12 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <div className="relative">
+        <div className="relative">   
           <button
             type="button"
             ref={buttonRef}
             onClick={handleToggleCart}
-            className="relative flex items-center text-emerald-600 hover:text-emerald-800 focus:outline-none"
+            className="relative flex items-center text-emerald-500 hover:text-emerald-800 focus:outline-none"
           >
             <ShoppingCart size={24} />
 
@@ -99,7 +99,7 @@ const Navbar = () => {
 
         <button
           onClick={toggleMobileMenu}
-          className="md:hidden text-emerald-600 hover:text-emerald-800 focus:outline-none"
+          className="md:hidden text-emerald-500 hover:text-emerald-800 focus:outline-none"
         >
           {MobileMenuOpen ? (
             <svg
@@ -139,7 +139,7 @@ const Navbar = () => {
 
       {MobileMenuOpen && (
         <div className="md:hidden bg-white shadow-md p-4">
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col items-center gap-2">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <Link
