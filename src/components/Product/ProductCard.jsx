@@ -52,9 +52,9 @@ const ProductCard = ({ product }) => {
                
               
                 <div className="card-actions flex justify-between items-center mt-auto">
-                    <span className="text-gray-900 text-sm">
+                    <span className="text-emerald-600 text-sm font-bold">
                         Price: 
-                        <span className="text-slate-700 text-sm">${product.price.toFixed(2)}</span>
+                        <span className="text-slate-700 text-sm font-semibold"> ${product.price.toFixed(2)}</span>
                     </span>
                     <button 
                         onClick={handleAddToCart}
