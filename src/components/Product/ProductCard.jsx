@@ -17,15 +17,15 @@ const ProductCard = ({ product }) => {
 
     return (
 
-        <div className="rounded overflow-hidden shadow-lg hover:shadow-xl transition duration-300 bg-white">
+        <div className="rounded overflow-hidden shadow-lg hover:shadow-xl transition duration-300 bg-white flex flex-col h-full">
 
         <Link 
-            className="block relative group"
+            className="block group h-full"
             to={`/products/${product.id}`}
         >
             <div className="relative">
                 <img 
-                    className="object-cover w-full h-60"
+                    className="object-cover w-full h-60 sm:h-56 md:h-48"
                     src={product.image} 
                     alt={product.description} 
                 />  
@@ -36,29 +36,29 @@ const ProductCard = ({ product }) => {
                 </div>
 
                 {/* Category Badge */}
-                <div className="absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white rounded-full w-auto h-8 flex flex-col items-center justify-center mt-3 mr-3 text-sm hover:bg-white hover:text-indigo-600 transition duration-500">
-                    <small>{product.category || "Category"}</small>
+                <div className="absolute top-0 right-0 bg-indigo-600 px-3 py-1 text-white text-xs rounded-full w-auto h-8 flex flex-col items-center justify-center mt-3 mr-3 text-sm hover:bg-white hover:text-indigo-600 transition duration-300">
+                    {product.category || "Category"}
                 </div>
             </div>
 
             {/* Card Body */}
-            <div className="card-body px-6 py-4 bg-white z-30 relative">
-                <div className="card-details mb-2">
+            <div className="card-body px-4 py-3 flex flex-col justify-between flex-grow bg-white">
+                <div className="card-details">
                     <Link to={`/products/${product.id}`} className="block mb-1">
-                        <h2 className="font-semibold text-lg hover:text-emerald-500 transition duration-500">{product.name}</h2>
+                        <h2 className="font-semibold text-base md:text-lg mb-1 group-hover:text-emerald-500 transition duration-300">{product.name}</h2>
                     </Link>
-                    <p className="text-slate-500 text-sm line-clamp-2">{product.description}</p>
+                    <p className="text-slate-500 text-sm mb-8 line-clamp-2">{product.description}</p>
                 </div>
                
               
-                <div className="card-actions flex justify-between items-center">
+                <div className="card-actions flex justify-between items-center mt-auto">
                     <span className="text-gray-900 text-sm">
                         Price: 
                         <span className="text-slate-700 text-sm">${product.price.toFixed(2)}</span>
                     </span>
                     <button 
                         onClick={handleAddToCart}
-                        className="text-white bg-indigo-600 px-4 py-2 rounded hover:bg-indigo-500 hover:text-white-800 hover:shadow transition duration-300 text-sm font-medium "
+                        className="text-white bg-indigo-600 px-3 py-1 rounded hover:bg-indigo-500 hover:text-white hover:shadow transition duration-300 text-sm "
                     >
                         Add to Cart
                     </button>
