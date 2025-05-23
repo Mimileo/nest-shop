@@ -8,7 +8,7 @@ const Card = ({  title, description, image, date }) => {
 
             {(image || date) && (
                 <div className="flex items-center mt-4">
-                    {image && <img src={image} alt="Card" className="w-12 h-12 rounded-full mr-4" />}
+                    {image && <img src={image} alt={title} className="w-12 h-12 rounded-full mr-4" loading="lazy"/>}
                     {date && <span className="text-gray-600">{date}</span>}
                 </div>
             )}

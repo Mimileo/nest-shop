@@ -10,7 +10,10 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <h3 className="text-lg font-semibold text-emerald-50 dark:text-white mb-4">
-                            NestShop
+                           <Link 
+                             to="/">
+                             NestShop
+                           </Link>
                         </h3>
                         <p className="text-primary-700 dark:text-gray-300">
                             Tech, fashion, and more.
@@ -26,7 +29,7 @@ const Footer = () => {
                                 <li key={link.name}>
                                     <Link
                                         className="hover:text-primary-800 dark:hover:text-white" 
-                                        to={link.href}>{link.name}
+                                        to={link.to}>{link.name}
                                     </Link>
                                 </li>
                             ))}

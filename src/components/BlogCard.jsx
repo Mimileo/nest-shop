@@ -5,7 +5,7 @@ const BlogCard = ({ image, date, CardTitle, CardDescription }) => {
       <div className="w-full px-4 md:w-1/2 lg:w-1/3">
         <div className="mb-10 w-full  py-10 bg-white shadow-lg transition-transform hover:scale-[1.01] ">
           <div className="mb-8 overflow-hidden rounded  ">
-            <img src={image} alt="" className="w-full" />
+            <img src={image} alt={CardDescription} className="w-full" loading="lazy" />
           </div>
           <div className="px-6">
             {date && (

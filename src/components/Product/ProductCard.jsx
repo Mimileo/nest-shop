@@ -28,6 +28,7 @@ const ProductCard = ({ product }) => {
                     className="object-cover w-full h-60 sm:h-56 md:h-48"
                     src={product.image} 
                     alt={product.description} 
+                    loading="lazy"
                 />  
 
                 {/* Overlay */}
