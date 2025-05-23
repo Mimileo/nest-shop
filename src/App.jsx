@@ -18,7 +18,7 @@ const App = () => {
          <Routes>
 
             <Route 
-              path='/' 
+              path='/nest-shop/' 
               element={<HomePage />} 
             />
             <Route 
