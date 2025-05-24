@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
-const Logo = ({ src = logo, alt = "DigitalNest Logo", className = "logo h-10 w-10" }) => {
+
+const Logo = ({  alt = "DigitalNest Logo", className = "logo h-10 w-10" }) => {
     return (<>
        <Link to="/">
             <img 
-                src={src} 
+                src={`${import.meta.env.BASE_URL}logo.png`} 
                 alt={alt} 
                 loading="lazy"
                 className={className} 

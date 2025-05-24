@@ -11,7 +11,7 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold text-emerald-50 dark:text-white mb-4">
                            <Link 
-                             to="/">
+                             to="/nest-shop/">
                              NestShop
                            </Link>
                         </h3>
