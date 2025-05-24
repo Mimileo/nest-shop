@@ -52,7 +52,7 @@ const ProductCard = ({ product }) => {
                 </div>
                
               
-                <div className="card-actions flex justify-between items-center mt-auto">
+                <div className="card-actions flex justify-between items-center gap-2 mt-auto">
                     <span className="text-emerald-600 text-sm font-bold">
                         Price: 
                         <span className="text-slate-700 text-sm font-semibold"> ${product.price.toFixed(2)}</span>
