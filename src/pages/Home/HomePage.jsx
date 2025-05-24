@@ -42,7 +42,7 @@ const HomePage = () => {
                  Find your path.
                 Create your Future.
                 </span>
-                <h2 className="mb-4 text-3xl font-bold text-dark  sm:text-4xl md:text-[40px]">
+                <h2 className="mb-4 text-3xl font-bold text-dark  sm:text-4xl md:text-[40px] text-emerald-800">
                  Welcome to the Nest
                 </h2>
                 <p className="text-base text-body-color dark:text-dark-6">

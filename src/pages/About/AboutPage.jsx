@@ -41,8 +41,8 @@ const AboutPage = () => {
               <h2 class="text-2xl font-bold">Mission And Values</h2>
 
               <p class="mt-4 text-gray-700 max-w-2xl mx-auto">
-                Our mission is to provide exceptional healthcare services with a
-                focus on availability, reliability, and support.
+                Our mission is to create sustainable and scalable technology learning centers for Latinx youth in order to foster economic equality. 
+                Sparking passion and innovation for the next generation of tech leaders.
               </p>
 
               <div class="flex justify-center space-x-8 mt-8">
